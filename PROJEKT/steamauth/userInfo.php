@@ -1,8 +1,42 @@
 <?php
+include 'dbconnect.php';
+$conn = OpenCon();
 if (empty($_SESSION['steam_uptodate']) or empty($_SESSION['steam_personaname'])) {
 	require 'SteamConfig.php';
 	$url = file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$steamauth['apikey']."&steamids=".$_SESSION['steamid']); 
+	
 	$content = json_decode($url, true);
+	$avatar = $content['response']['players'][0]['avatar'];
+	$nickname = $content['response']['players'][0]['personaname'];
+	$steamid= $content['response']['players'][0]['steamid'];
+
+	
+	$sql = "SELECT * FROM user";
+	$response = $conn->query($sql);
+	$num_rows = $response->num_rows;
+	$duplicate = false;
+	
+	if ($num_rows > 0) {
+		while($row = $response->fetch_assoc()) {
+			if($row['steamid'] === $steamid) {
+				$duplicate = true;
+			}
+		}
+		if (!$duplicate) {
+			$sql = "INSERT INTO `user` (`id`, `nickname`, `avatar`, `steamid`) VALUES (NULL, '$nickname', '$avatar', '$steamid')";
+			$conn->query($sql);
+		}
+	  }
+
+	
+	
+
+	
+
+	
+
+	//$conn = CloseCon();
+
 	$_SESSION['steam_steamid'] = $content['response']['players'][0]['steamid'];
 	$_SESSION['steam_communityvisibilitystate'] = $content['response']['players'][0]['communityvisibilitystate'];
 	$_SESSION['steam_profilestate'] = $content['response']['players'][0]['profilestate'];
