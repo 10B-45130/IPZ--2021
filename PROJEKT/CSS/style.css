@@ -12,7 +12,56 @@ header {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    padding-top: 150px;
     /* filter: grayscale(40%); */
+}
+
+.usersZone {
+    background-color: transparent;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.userImage {
+    width: 150px;
+}
+
+.userNaame {
+    text-align: center;
+    font-size: 35px;
+}
+
+.singleUsersZone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+.singleZone {
+    text-align: center;
+}
+
+.singleUser {
+    display: flex;
+    align-items: center;
+    max-width: 200px;
+    margin-left: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.singleUser img {
+    max-width: 50px;
+}
+
+.nameOfUser {
+    margin-left: 15px;
+    white-space: nowrap;
+    margin-bottom: 0px;
 }
 
 .on-header {
@@ -60,6 +109,9 @@ header {
 
 .belt-up div div .left {
     height: 60px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
 }
 
 .belt-up div div .left h1 {
@@ -68,6 +120,11 @@ header {
     display: flex;
     justify-items: center;
     align-items: center;
+}
+
+.menu-link {
+    margin-left: 30px;
+    color: white;
 }
 
 .belt-up div div .right {

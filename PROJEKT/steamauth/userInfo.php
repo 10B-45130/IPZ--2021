@@ -1,12 +1,15 @@
 <?php
-include 'dbconnect.php';
+
+require_once('dbconnect.php');
+
 $conn = OpenCon();
 if (empty($_SESSION['steam_uptodate']) or empty($_SESSION['steam_personaname'])) {
 	require 'SteamConfig.php';
 	$url = file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$steamauth['apikey']."&steamids=".$_SESSION['steamid']); 
 	
 	$content = json_decode($url, true);
-	$avatar = $content['response']['players'][0]['avatar'];
+	
+	$avatar = $content['response']['players'][0]['avatarfull'];
 	$nickname = $content['response']['players'][0]['personaname'];
 	$steamid= $content['response']['players'][0]['steamid'];
 
@@ -27,15 +30,7 @@ if (empty($_SESSION['steam_uptodate']) or empty($_SESSION['steam_personaname']))
 			$conn->query($sql);
 		}
 	  }
-
 	
-	
-
-	
-
-	
-
-	//$conn = CloseCon();
 
 	$_SESSION['steam_steamid'] = $content['response']['players'][0]['steamid'];
 	$_SESSION['steam_communityvisibilitystate'] = $content['response']['players'][0]['communityvisibilitystate'];
@@ -73,5 +68,7 @@ $steamprofile['timecreated'] = $_SESSION['steam_timecreated'];
 $steamprofile['uptodate'] = $_SESSION['steam_uptodate'];
 
 // Version 4.0
+
+// CloseCon($conn);
 ?>
     

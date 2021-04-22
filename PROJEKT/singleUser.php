@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <?php 
+require_once('dbconnect.php');
+
+$conn = OpenCon();
         require './steamauth/steamauth.php'; 
 
         if(isset($_SESSION['steamid'])) {
@@ -25,13 +30,34 @@
     <title>IPZ - 2021</title>
 </head>
 <body>
-    <header></header>
-        <div class="on-header">
-            <div class="belt">
-                <h2>Just find your team </h2>                
-            </div>    
-        </div>
+    <header>
+        <div class="container usersZone singleUsersZone">
+            
+                
+                    <?php
+                        $steamid = $_GET['username'];
+                        $sql = "SELECT * FROM user WHERE steamid=$steamid";
+                        $response = $conn->query($sql);
+                        $num_rows = $response->num_rows;
 
+                        if ($num_rows > 0) {
+                            $user = $response->fetch_assoc();
+                            ?>
+                            <div class="singleZone">
+                            <img class="userImage" src="<?php echo $user['avatar']?>" alt="avatar"/>
+                            <p class="userNaame"><?php echo $user['nickname']?></p>
+                            </div>
+                            <div>
+                                dane
+                            </div>
+
+                            <?php
+                          }
+                    ?>
+                
+            
+        </div>
+    </header>
         <div class="belt-up">
             <div class="container-fluid">
                 <div class="row">
@@ -78,3 +104,5 @@
     
 </body>
 </html>
+
+<!-- <?php CloseCon($conn); ?> -->

@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <?php 
+require_once('dbconnect.php');
+$conn = OpenCon();
+
+
         require './steamauth/steamauth.php'; 
 
         if(isset($_SESSION['steamid'])) {
@@ -25,13 +31,44 @@
     <title>IPZ - 2021</title>
 </head>
 <body>
-    <header></header>
-        <div class="on-header">
-            <div class="belt">
-                <h2>Just find your team </h2>                
-            </div>    
-        </div>
+    <header>
+        <div class="container usersZone">
+            <?php 
+            if(isset($_SESSION['steamid'])) {
 
+            
+            ?>
+                    <?php
+                        $sql = "SELECT * FROM user";
+                        $response = $conn->query($sql);
+                        
+                        $num_rows = $response->num_rows;
+
+                        if ($num_rows > 0) {
+                            while($row = $response->fetch_assoc()) {
+                                ?>
+                                <form action="/singleUser.php" method="GET" name="singleForm-<?php echo $row['steamid'];?>">
+                                <div onClick="document.forms['singleForm-<?php echo $row['steamid'];?>'].submit();" class="singleUser">
+                                    <input type="text" value="<?php echo $row['steamid']; ?>" name="username" hidden/>
+                                    <img src="<?php echo $row['avatar'];?>" alt="avatar"/>
+                                    <p class="nameOfUser"><?php echo $row['nickname'];?></p>
+                                </div>
+                                </form>     
+                                <?php
+                                
+
+                            }
+                          }
+                        } else {
+                            header('Location: http://projekt.localhost/index.php?login');
+                            exit;
+
+                        }
+                    ?>
+                
+            
+        </div>
+    </header>
         <div class="belt-up">
             <div class="container-fluid">
                 <div class="row">
@@ -78,3 +115,5 @@
     
 </body>
 </html>
+
+<!-- <?php CloseCon($conn); ?> -->
