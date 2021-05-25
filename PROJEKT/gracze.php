@@ -62,7 +62,6 @@ $conn = OpenCon();
                         } else {
                             header('Location: http://projekt.localhost/index.php?login');
                             exit;
-
                         }
                     ?>
                 
@@ -73,7 +72,7 @@ $conn = OpenCon();
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-6 left">
-                        <h1>LOGO - IPZ</h1>
+                        <h1><a href="/index.php" class="menu-link1">LOGO - IPZ</a></h1>
                         <a href="/gracze.php" class="menu-link">Gracze</a>
                     </div>
                     <div class="col-6 right">                           

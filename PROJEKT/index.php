@@ -9,10 +9,6 @@
         }   
 ?>
 
-
-
-
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/bcbbe0b4e9.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>IPZ - 2021</title>
 </head>
 <body>
@@ -36,7 +33,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-6 left">
-                        <h1>LOGO - IPZ</h1>
+                        <h1><a href="/index.php" class="menu-link1">LOGO - IPZ</a></h1>
                         <a href="/gracze.php" class="menu-link">Gracze</a>
                     </div>
                     <div class="col-6 right">                           
@@ -70,11 +67,12 @@
                         <span>
                             <i class="fab fa-facebook-square"></i>                            
                             <i class="fab fa-instagram"></i>
+                            
                         </span>                        
                     </div>
                 </div>
             </div>           
         </div>
-    
+    <script src="./js/script.js"></script>
 </body>
 </html>
